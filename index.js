@@ -38,7 +38,7 @@ client.on('ready', () => {
 
 // function to clear all server channels
 let clear = (message) => {
-	message.guild.channels.cache.forEach(channel => channel.delete());
+	message.guild.channels.cache.forEach(channel => channel.delete().catch(e => console.log("tried deleting community channel"))); // fixed bug to do with community channels
 }
 
 // make a server channel
