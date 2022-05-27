@@ -1,12 +1,13 @@
 # discord-nuke-bot
 A basic discord nuke bot made with discord.js v13
-DISCLAIMER: Use this at your own risk im not responsible for you getting into trouble and stuff.
+# DISCLAIMER: Use this at your own risk - I'm not responsible for you getting into trouble and stuff.
 
 # What this bot does
 - Delete all the channels in a server
-- Makes 30 new ones
-- Then it spams in all of them
-- Also tries to DM every member in the server
+- Makes a ton of new channels & spams in them
+- Attempts to spam user DMs
+- Unbans everyone
+- Logs invites to that server
 
 # Commands
 - "start" to start
