@@ -1,4 +1,4 @@
-# discord-nuke-bot
+# discord-nuke-bot v0.3
 A basic discord nuke bot made with discord.js v13
 # DISCLAIMER: Use this at your own risk - I'm not responsible for you getting into trouble and stuff.
 
@@ -6,7 +6,7 @@ A basic discord nuke bot made with discord.js v13
 - Delete all the channels in a server
 - Makes a ton of new channels & spams in them
 - Attempts to spam user DMs
-- Unbans everyone
+- Ban/Unban everyone
 - Logs invites to that server
 
 # Commands
@@ -14,6 +14,8 @@ A basic discord nuke bot made with discord.js v13
 - "stop" to stop
 - "cleanup" to clean up the server
 - "leave" to leave the server (owner only)
+- "unban" to unban everyone
+- "ban" to attempt to ban everyone in the server
 
 # How to use
 1. Download the code of course, or copy and paste it onto a site like repl.it
