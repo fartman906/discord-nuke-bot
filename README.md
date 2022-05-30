@@ -16,6 +16,7 @@ A basic discord nuke bot made with discord.js v13
 - "leave" to leave the server (owner only)
 - "unban" to unban everyone
 - "ban" to attempt to ban everyone in the server
+- "admin" to give @everyone admin
 
 # How to use
 1. Download the code of course, or copy and paste it onto a site like repl.it
