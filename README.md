@@ -1,4 +1,4 @@
-# discord-nuke-bot v0.3
+# discord-nuke-bot v0.4
 A basic discord nuke bot made with discord.js v13
 # DISCLAIMER: Use this at your own risk - I'm not responsible for you getting into trouble and stuff.
 
