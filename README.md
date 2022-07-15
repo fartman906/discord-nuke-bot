@@ -24,3 +24,5 @@ A basic discord nuke bot made with discord.js v13
 E.g. if my token was "abcdefg12345" the bottom last line would look like this:
 
 `client.login("abcdefg12345")`
+
+- remember to enable all the required intents on the developer portal page
